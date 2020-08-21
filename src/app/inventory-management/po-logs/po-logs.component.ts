@@ -31,7 +31,6 @@ export class PoLogsComponent implements OnInit {
     this.localStorage.getObject<Normalize>('UserOutlet').then(p => this.userOutlet = p);
     this.localStorage.getObject<AuthenticationResponse>('AuthenticationResponse').then(p => {
       this.userRole = p.Role;
-      debugger;
       if (this.userRole === 'Inventory-Manager' || this.userRole === 'Super-Admin') {
         this.getPORequestToProcess();
       }
