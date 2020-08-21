@@ -1,0 +1,66 @@
+<ion-content>
+    <ion-list>
+        <ion-grid>
+            <ion-row responsive-sm wrap *ngIf="role==='Super-Admin'">
+                <ion-col col-sm (click)="navigatUser()">
+                    <ion-item color="danger">
+                        <ion-icon style="padding-left:80%" name="person-outline"></ion-icon>
+                    </ion-item>
+                    <ion-item color="danger">
+                        <ion-lable>User Management</ion-lable>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row responsive-sm wrap>
+                <ion-col col-sm (click)="navigatePORequest()">
+                    <ion-item color="warning">
+                        <ion-icon style="padding-left:80%" name="clipboard-outline"></ion-icon>
+                    </ion-item>
+                    <ion-item color="warning">
+                        <ion-lable>PO Request</ion-lable>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row responsive-sm wrap (click)="navigateToMaterialInward()">
+                <ion-col col-sm>
+                    <ion-item color="warning">
+                        <ion-icon style="padding-left:80%" name="cart-outline"></ion-icon>
+                    </ion-item>
+                    <ion-item color="warning">
+                        <ion-lable>Material Inwards</ion-lable>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row responsive-sm wrap>
+                <ion-col col-sm (click)="navigateToMaterialOutwards()">
+                    <ion-item color="primary">
+                        <ion-icon style="padding-left:80%" name="barcode-outline"></ion-icon>
+                    </ion-item>
+                    <ion-item color="primary">
+                        <ion-lable>Material Outwards</ion-lable>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row responsive-sm wrap>
+                <ion-col col-sm>
+                    <ion-item color="light">
+                        <ion-icon style="padding-left:80%" name="bar-chart-outline"></ion-icon>
+                    </ion-item>
+                    <ion-item color="light">
+                        <ion-lable>Reports</ion-lable>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row responsive-sm wrap>
+                <ion-col col-sm>
+                    <ion-item color="dark">
+                        <ion-icon style="padding-left:80%" name="bar-chart-outline"></ion-icon>
+                    </ion-item>
+                    <ion-item color="dark">
+                        <ion-lable>Reports</ion-lable>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+</ion-content>

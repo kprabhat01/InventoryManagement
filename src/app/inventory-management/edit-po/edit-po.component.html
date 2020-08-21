@@ -1,0 +1,98 @@
+<ion-content>
+    <form #myForm="ngForm" *ngIf="!isView">
+        <ion-list>
+            <ion-item color="success">
+                <ion-icon name="fast-food-outline"></ion-icon>
+                <ion-icon name="close-circle-outline" slot="end" (click)="closePop(false)"></ion-icon>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <h4>
+                        <ion-icon name="home-outline"></ion-icon> {{poItems.FromStore.NormalizeName}}
+                    </h4>
+                    <p>
+                        {{poItems.CreatedDate | date}}
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item *ngFor="let poItem of poItems.ItemDetail;let i = index;">
+                <ion-card>
+                    <ion-card-header>
+                        <input type="hidden" name="poItem.Id-{{i}}" [(ngModel)]="poItem.Id " required>
+                        <ion-card-subtitle>({{poItem.Unit.NormalizeName}}) {{poItem.Item.NormalizeName}}
+                        </ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-label position="stacked ">Quantity
+                            <ion-text color="danger ">*</ion-text>
+                        </ion-label>
+                        <ion-input required type="number" [(ngModel)]="poItem.Quantity" color="success" name="poItem.Quantity-{{i}}" required></ion-input>
+                        <ion-label position="stacked ">Rate
+                            <ion-text color="danger ">*</ion-text>
+                        </ion-label>
+                        <ion-input required type="number" color="success" [(ngModel)]="poItem.Rate" name="poItem.Rate-{{i}}" required>
+                        </ion-input>
+                    </ion-card-content>
+                </ion-card>
+            </ion-item>
+        </ion-list>
+        <div class="ion-padding ">
+            <ion-label color="danger ">Note: Post submission confirms the stock has been dispatched with edited detail.
+            </ion-label>
+            <ion-button expand="block " type="button " class="ion-no-margin " color="success " (click)="saveEditedList(myForm.value) " *ngIf=" poItems.ItemDetail.length>0 && isAuthorized && poItems.Status.Id ==2">
+                Submit</ion-button>
+        </div>
+    </form>
+
+    <ion-list *ngIf="isView">
+        <ion-item color="success">
+            <ion-icon name="fast-food-outline"></ion-icon> View
+            <ion-icon name="close-circle-outline" slot="end" (click)="closePop(false)"></ion-icon>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <h4>
+                    From:
+                    <ion-icon name="home-outline"></ion-icon> {{poItems.FromStore.NormalizeName}}
+                </h4>
+                <p>
+                    {{poItems.CreatedDate | date}}
+                </p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <h4>
+                    To:
+                    <ion-icon name="home-outline"></ion-icon> {{poItems.ToStore.NormalizeName}}
+                </h4>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <h4>
+                    Status:
+                    <ion-icon name="flag-outline"></ion-icon> {{poItems.ToStore.NormalizeName}}
+                </h4>
+            </ion-label>
+        </ion-item>
+        <ion-item color="success">
+            <ion-label>
+                Item Details
+            </ion-label>
+        </ion-item>
+        <ion-item *ngFor="let poItem of poItems.ItemDetail">
+            <ion-label>
+                <h4>
+                    <ion-icon name="fast-food-outline"></ion-icon> {{poItem.Item.NormalizeName}}
+                </h4>
+                <p>
+                    <ion-icon name="cart-outline"></ion-icon> {{poItem.Quantity}}({{poItem.Unit.NormalizeName}})
+                </p>
+                <p>
+                    <ion-icon name="cash-outline"></ion-icon> {{poItem.Rate}} per/{{poItem.Unit.NormalizeName}}
+                </p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

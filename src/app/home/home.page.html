@@ -1,0 +1,57 @@
+<ion-app>
+    <ion-menu side="start" content-id="main-content">
+        <ion-header>
+            <ion-toolbar translucent>
+                <ion-title color="success">
+                    <ion-grid>
+                        <ion-row>
+                            <ioc-col color="success">
+                                Hello! {{username}}
+                            </ioc-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-item (click)="moveToHome()" routerLinkActive="router-link-active">
+                    <ion-icon name="home-outline" slot="start"></ion-icon>
+                    <ion-label>Home</ion-label>
+                </ion-item>
+                <ion-item (click)="moveToAddItems()" routerLinkActive="router-link-active" *ngIf="role==='Super-Admin' || role==='Inventory-Manager'">
+                    <ion-icon name="fast-food-outline" slot="start"></ion-icon>
+                    <ion-label>Add Items</ion-label>
+                </ion-item>
+                <ion-item (click)="moveToOutletStock()" routerLinkActive="router-link-active">
+                    <ion-icon name="fast-food-outline" slot="start"></ion-icon>
+                    <ion-label>CurrentStock</ion-label>
+                </ion-item>
+                <ion-item (click)="moveToChangePassword()" routerLinkActive="router-link-active">
+                    <ion-icon name="key-outline" slot="start"></ion-icon>
+                    <ion-label>Change Password</ion-label>
+                </ion-item>
+                <ion-item (click)="resetSession()" routerLinkActive="router-link-active">
+                    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                    <ion-label>Log Out</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content">
+        <ion-header>
+            <ion-toolbar color="success">
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+                <ion-title class="ion-text-center">QUICK BOOK</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-split-pane contentId="pages-content">
+                <ion-router-outlet id="pages-content"></ion-router-outlet>
+            </ion-split-pane>
+        </ion-content>
+    </div>
+</ion-app>

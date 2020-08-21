@@ -1,0 +1,16 @@
+<ion-item *ngIf="currentStocks">
+    <ion-searchbar showCancelButton="never" [(ngModel)]="itemSearch"></ion-searchbar>
+</ion-item>
+<ion-item *ngFor="let item of currentStocks|commonSearch:itemSearch">
+    <ion-label>
+        <h4>
+            <ion-icon name="fast-food-outline"></ion-icon> {{item.NormalizeName}}
+        </h4>
+        <p>
+            <ion-icon name="calendar-outline"></ion-icon> {{item.LastUpdated | date}}
+        </p>
+    </ion-label>
+    <ion-note slot="end">
+        {{item.Quantity}}/{{item.Units.NormalizeName}}
+    </ion-note>
+</ion-item>

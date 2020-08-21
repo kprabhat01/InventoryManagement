@@ -1,0 +1,47 @@
+<ion-content>
+    <form [formGroup]="poRequestForm" (ngSubmit)="SubmitForm()">
+        <ion-list>
+            <ion-item color="success">
+                <ion-icon name="cart-outline"></ion-icon>
+                <ion-label> PO Finalizer</ion-label>
+                <ion-icon name="close-circle-outline" slot="end" (click)="closePop(false)"></ion-icon>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">From Outlet
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-select placeholder="Select" formControlName="fromOutletId">
+                    <ion-select-option *ngFor="let outlet of userOutlet" [value]="outlet.Id">
+                        {{outlet.NormalizeName}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">To Outlet
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-select placeholder="Select" formControlName="toOutletId">
+                    <ion-select-option *ngFor="let outlet of releventStore" [value]="outlet.Id">
+                        {{outlet.NormalizeName}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item color="success">
+                Selected Items
+            </ion-item>
+            <ion-item *ngFor="let item of items; let i=index">
+                <ion-lable>
+                    {{item.lineItem.NormalizeName}}
+                </ion-lable>
+                <ion-note slot="end" color="success">
+                    {{item.qty}} {{item.lineItem.Units.NormalizeName}}
+                </ion-note>
+                <ion-icon name="trash-outline" slot="end" color="danger" (click)="deleteItem(i,1)"></ion-icon>
+            </ion-item>
+        </ion-list>
+        <div class="ion-padding">
+            <ion-button expand="block" type="submit" class="ion-no-margin" color="success" [disabled]="poRequestForm.invalid">
+                Submit</ion-button>
+        </div>
+    </form>
+</ion-content>

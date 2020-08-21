@@ -1,0 +1,23 @@
+<ion-item-sliding *ngFor="let po of poList">
+    <ion-item>
+        <ion-label>
+            <h4>
+                <ion-icon name="home-outline"></ion-icon>
+                {{po.ToStore.NormalizeName}}
+            </h4>
+            <p>
+                <ion-icon name="person-outline"></ion-icon> {{po.Username}}
+            </p>
+            <p>
+                <ion-icon name="calendar-outline"></ion-icon> {{po.CreatedDate|date}}
+            </p>
+        </ion-label>
+        <ion-note slot="end">{{po.Status.NormalizeName}}</ion-note>
+    </ion-item>
+
+    <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="importItem(po)" *ngIf="(userRole=='Store-Manager' || userRole=='Super-Admin') && po.Status.Id==3">Import</ion-item-option>
+        <ion-item-option color="success" (click)="poEdit(po)" *ngIf="(userRole=='Inventory-Manager' || userRole=='Super-Admin' ) && po.Status.Id==2">Process</ion-item-option>
+        <ion-item-option color="success" (click)="viewPO(po)">View</ion-item-option>
+    </ion-item-options>
+</ion-item-sliding>

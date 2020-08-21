@@ -1,0 +1,33 @@
+<ion-card>
+    <ion-card-header>
+        <ion-card-title color='success' class="ion-text-left">Change Passowrd</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <form [formGroup]="authCredential" (ngSubmit)="onFormSubmission()">
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                <ion-item>
+                    <ion-label position="stacked">Old Password
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="Password" formControlName="oldPassword"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Password
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="Password" formControlName="password"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Re-Password
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="Password" formControlName="rePassword"></ion-input>
+                </ion-item>
+            </ion-list>
+            <div class="ion-padding">
+                <ion-button expand="block" type="submit" class="ion-no-margin" color="success" [disabled]='authCredential.invalid'>
+                    Submit</ion-button>
+            </div>
+        </form>
+    </ion-card-content>
+</ion-card>

@@ -1,0 +1,58 @@
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title color='success' class="ion-text-left">Create User</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <form [formGroup]="createUser" (ngSubmit)="onFormSubmission()">
+                <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                    <ion-item>
+                        <ion-label position="stacked">First Name
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input required type="text" formControlName="firstName"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Last Name
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input required type="text" formControlName="lastName"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">User Id
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input required type="text" formControlName="userId"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Role
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-select placeholder="Select" formControlName="roleId">
+                            <ion-select-option *ngFor="let role of roles" [value]="role.Id">{{role.NormalizeName}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Outlets
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-select multiple="true" placeholder="Select" formControlName="outlet" cancelText="Cancel" okText="Ok">
+                            <ion-select-option *ngFor="let store of stores" [value]="store.Id">{{store.NormalizeName}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Passcode
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input required type="password" formControlName="passcode"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <div class="ion-padding">
+                    <ion-button expand="block" type="submit" class="ion-no-margin" color="success" [disabled]='createUser.invalid'>
+                        Submit</ion-button>
+                </div>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

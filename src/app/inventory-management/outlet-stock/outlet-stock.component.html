@@ -1,0 +1,10 @@
+<ion-conten>
+    <ion-list>
+        <ion-item color="success">
+            <ion-icon name="fast-food-outline"></ion-icon>
+            <ion-label>Current Stock</ion-label>
+        </ion-item>
+        <app-outlet-filter (selectedOutlet)="getSelectedStore($event)"></app-outlet-filter>
+        <app-outlet-stock-list [outletId]="selectedOutlet"></app-outlet-stock-list>
+    </ion-list>
+</ion-conten>

@@ -1,0 +1,35 @@
+<ion-content>
+    <ion-card-header>
+        <ion-card-title color='success' class="ion-text-left">Add Item</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <form [formGroup]="itemForm" (ngSubmit)="onFormSubmission()">
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                <ion-item>
+                    <ion-label position="stacked">Item Name
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="text" formControlName="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Unit
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-select placeholder="Select" formControlName="unitId">
+                        <ion-select-option *ngFor="let unit of units" [value]="unit.Id">{{unit.NormalizeName}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Comment
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="text" formControlName="comment"></ion-input>
+                </ion-item>
+            </ion-list>
+            <div class="ion-padding">
+                <ion-button expand="block" type="submit" class="ion-no-margin" color="success" [disabled]='itemForm.invalid'>
+                    Submit</ion-button>
+            </div>
+        </form>
+    </ion-card-content>
+</ion-content>

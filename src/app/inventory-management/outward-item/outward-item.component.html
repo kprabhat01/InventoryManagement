@@ -1,0 +1,33 @@
+<ion-content>
+    <ion-list>
+        <ion-item color="success">
+            Items
+            <ion-icon name="close-circle-outline" slot="end" (click)="closePop(false)"></ion-icon>
+        </ion-item>
+        <ion-item *ngFor="let item of outwardItem;let i = index">
+            <ion-label>
+                <h3>
+                    <ion-icon name="fast-food-outline"></ion-icon>
+                    {{item.Item.NormalizeName}}
+                </h3>
+                <p>Quantity:{{item.Quantity}} {{item.Item.Units.NormalizeName}}</p>
+                <p>
+                    <ion-icon name="home-outline"></ion-icon> {{item.Outlet.NormalizeName}}
+                </p>
+                <p>
+                    Movenent Type: {{item.Movement.NormalizeName}}
+                </p>
+            </ion-label>
+            <ion-note slot="end" color="danger">
+                <h2>
+                    <ion-icon name="trash-outline" (click)="deleteItem(i)"></ion-icon>
+                </h2>
+            </ion-note>
+        </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+        <ion-button expand="block" slot="end" color="success" type="button" (click)="submitMaterial()" class="ion-no-margin" *ngIf="outwardItem.length>0">
+            Submit
+        </ion-button>
+    </div>
+</ion-content>

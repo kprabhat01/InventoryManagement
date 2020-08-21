@@ -1,0 +1,30 @@
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title color='success' class="ion-text-right">
+                <ion-list>
+                    <ion-item color="success">
+                        <ion-label>PO Requet</ion-label>
+                        <ion-button type="button" color="danger" slot="end" (click)="getOrderedItems()">
+                            <ion-icon name="cart-outline"></ion-icon>
+                            {{orderedItem.length}}
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item>
+                    <ion-searchbar showCancelButton="never" [(ngModel)]="itemSearch"></ion-searchbar>
+                </ion-item>
+                <ion-item *ngFor="let item of items |commonSearch:itemSearch">
+                    <ion-label>{{item.NormalizeName}}</ion-label>
+                    <ion-input required color="success" slot="end" type="number" #name [value]="itemValue"></ion-input>
+                    <ion-button type="button" slot="end" class="ion-no-margin" color="success" (click)="setValue($event,item,name.value)">
+                        Add</ion-button>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

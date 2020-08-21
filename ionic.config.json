@@ -1,0 +1,8 @@
+{
+  "name": "InventoryManagement",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

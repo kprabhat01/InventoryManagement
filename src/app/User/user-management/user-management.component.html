@@ -1,0 +1,20 @@
+<ion-content>
+    <ion-list>
+        <ion-list-header color='success'>
+            <ion-label>Users</ion-label>
+        </ion-list-header>
+        <ion-item>
+            <ion-searchbar showCancelButton="never" [(ngModel)]="userSearch"></ion-searchbar>
+            <ion-icon name="person-add-outline" slot="end" color="success" (click)="moveToCreateUser()"></ion-icon>
+            <ion-icon name="refresh-outline" slot="end" color="success" (click)="getUsers()"></ion-icon>
+
+        </ion-item>
+        <ion-item *ngFor="let user of users | filterList:userSearch">
+            <ion-icon name="lock-open-outline" slot="end" (click)="resetCredential(user.Id)"></ion-icon>
+            <ion-icon name="trash-outline" slot="end" (click)="deleteUser(user.Id)"></ion-icon>
+            <ion-label color="success" class="ion-text-wrap">
+                {{user.FirstName}} {{user.LastName}}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

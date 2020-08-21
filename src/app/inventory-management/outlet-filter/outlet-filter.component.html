@@ -1,0 +1,17 @@
+<form [formGroup]="OutletSearch" (ngSubmit)="RenderOutlet()">
+    <ion-item>
+        <ion-label position="stacked">Outlet
+            <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-select placeholder="Select" formControlName="OutletId">
+            <ion-select-option *ngFor="let outlet of userOutlet" [value]="outlet.Id">
+                {{outlet.NormalizeName}}
+            </ion-select-option>
+        </ion-select>
+    </ion-item>
+    <div class="ion-padding">
+        <ion-button expand="block" slot="end" color="success" type="submit" class="ion-no-margin" [disabled]="OutletSearch.invalid">
+            <ion-icon name="search-outline"></ion-icon> Search
+        </ion-button>
+    </div>
+</form>

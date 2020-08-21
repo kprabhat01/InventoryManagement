@@ -1,0 +1,30 @@
+<ion-card style="margin:auto">
+    <ion-card-header>
+        <ion-card-title color='success' class="ion-text-center">QUICK BOOK</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmission()">
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                <ion-item>
+                    <ion-label position="stacked">Username
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="text" formControlName="username"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Password
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="Password" formControlName="password"></ion-input>
+                </ion-item>
+            </ion-list>
+            <div class="ion-padding">
+                <ion-button expand="block" type="submit" class="ion-no-margin" color="success" [disabled]='loginForm.invalid'>
+                    SignIn</ion-button>
+            </div>
+            <div class="ion-text-center" color="success">
+                Version:{{version}}
+            </div>
+        </form>
+    </ion-card-content>
+</ion-card>
