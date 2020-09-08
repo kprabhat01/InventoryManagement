@@ -54,6 +54,7 @@ export class HomePage implements OnInit {
   moveToNotification() {
     this.route.navigate(['/home/dashboard/notification']);
   }
+  
 
   getNotification() {
     setInterval(() => {

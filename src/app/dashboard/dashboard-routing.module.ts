@@ -11,7 +11,8 @@ const routes: Routes = [
   {
     path: 'notification',
     component: NotificationAlertComponent
-  }
+  },
+  
 ];
 
 @NgModule({

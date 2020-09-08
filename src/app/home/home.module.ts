@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { UserManagementModule } from '../User/user-management.module';
 import { InventoryPageModule } from '../inventory-management/inventory.module';
+import { ReportModule } from '../reports/report.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { InventoryPageModule } from '../inventory-management/inventory.module';
     HomePageRoutingModule,
     DashboardModule,
     UserManagementModule,
-    InventoryPageModule
+    InventoryPageModule,
+    ReportModule
   ],
   declarations: [HomePage]
 })

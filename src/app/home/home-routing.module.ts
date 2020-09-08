@@ -6,9 +6,9 @@ import { ChangePasscodeComponent } from '../User/change-password/change-passcode
 import { UserManagementComponent } from '../User/user-management/user-management.component';
 import { ResetCredentialComponent } from '../User/reset-credential/reset-credential.component';
 import { CreateUserComponent } from '../User/create-user/create-user.component';
-import { ItemComponent } from '../inventory-management/item/item.component';
 import { InventoryPageModule } from '../inventory-management/inventory.module';
 import { AdminAuthGuard } from '../guards/admin-auth.guard';
+import { ReportModule } from '../reports/report.module';
 
 const routes: Routes = [
   {
@@ -44,6 +44,11 @@ const routes: Routes = [
       canActivate: [UserAuthGuard, AdminAuthGuard]
     },
     {
+      path: 'reports',
+      loadChildren: () => import('../reports/report-routing.module').then(m => ReportModule),
+      canActivate: [UserAuthGuard, AdminAuthGuard]
+    },
+    {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full'
@@ -53,6 +58,7 @@ const routes: Routes = [
       redirectTo: 'dashboard',
       pathMatch: 'full'
     },
+
 
     ]
   }

@@ -31,4 +31,7 @@ export class DashboardComponent implements OnInit {
   navigateToMaterialInward() {
     this.route.navigate(['/home/additem/materialOutwards', true]);
   }
+  navigateToReports() {
+    this.route.navigate(['/home/reports']);
+  }
 }
