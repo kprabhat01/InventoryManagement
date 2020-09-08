@@ -16,7 +16,17 @@
                         <ion-text color="danger">*</ion-text>
                     </ion-label>
                     <ion-select placeholder="Select" formControlName="unitId">
-                        <ion-select-option *ngFor="let unit of units" [value]="unit.Id">{{unit.NormalizeName}}</ion-select-option>
+                        <ion-select-option *ngFor="let unit of units" [value]="unit.Id">{{unit.NormalizeName}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Has Varience
+                        <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-select placeholder="Select" formControlName="isVarience">
+                        <ion-select-option [value]="true">Yes</ion-select-option>
+                        <ion-select-option [value]="false">No</ion-select-option>
                     </ion-select>
                 </ion-item>
                 <ion-item>

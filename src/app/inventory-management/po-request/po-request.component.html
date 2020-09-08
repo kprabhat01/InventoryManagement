@@ -1,5 +1,7 @@
 <ion-content>
-    <ion-card>
+    <app-outlet-filter *ngIf="selectedStore==0" [isPOSelect]="true" (selectedOutlet)="getSelectStore($event)">
+    </app-outlet-filter>
+    <ion-card *ngIf="selectedStore>0">
         <ion-card-header>
             <ion-card-title color='success' class="ion-text-right">
                 <ion-list>
@@ -19,10 +21,20 @@
                     <ion-searchbar showCancelButton="never" [(ngModel)]="itemSearch"></ion-searchbar>
                 </ion-item>
                 <ion-item *ngFor="let item of items |commonSearch:itemSearch">
-                    <ion-label>{{item.NormalizeName}}</ion-label>
-                    <ion-input required color="success" slot="end" type="number" #name [value]="itemValue"></ion-input>
-                    <ion-button type="button" slot="end" class="ion-no-margin" color="success" (click)="setValue($event,item,name.value)">
+                    <ion-label>
+                        <p>
+                            {{item.NormalizeName}}({{item.Quantity}} {{item.Units.NormalizeName}})
+                        </p>
+
+                        <p>
+                            <ion-input required color="success" slot="end" type="number" #name [value]="itemValue">
+                            </ion-input>
+                        </p>
+                    </ion-label>
+                    <ion-button type="button" slot="end" class="ion-no-margin" color="success" (click)="setValue($event,item,name.value)" *ngIf="item.Quantity>0" [disabled]="name.value<=0 ||name.value> item.Quantity">
                         Add</ion-button>
+                    <ion-button type="button" *ngIf="item.Quantity<1" slot="end" class="ion-no-margin" color="warning" (click)="setNotification($event,item)">
+                        Notify</ion-button>
                 </ion-item>
             </ion-list>
         </ion-card-content>

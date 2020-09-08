@@ -19,6 +19,8 @@ import { OutletStockListComponent } from './outlet-stock-list/outlet-stock-list.
 import { OutletStockComponent } from './outlet-stock/outlet-stock.component';
 import { MaterialOutwardsComponent } from './material-outwards/material-outwards.component';
 import { OutwardItemComponent } from './outward-item/outward-item.component';
+import { PoItemAcceptanceComponent } from './po-item-acceptance/po-item-acceptance.component';
+import { ItemSearchComponent } from './item-search/item-search.component';
 
 @NgModule({
     imports: [
@@ -40,7 +42,9 @@ import { OutwardItemComponent } from './outward-item/outward-item.component';
         OutletStockComponent,
         OutletStockListComponent,
         MaterialOutwardsComponent,
-        OutwardItemComponent
+        OutwardItemComponent,
+        PoItemAcceptanceComponent,
+        ItemSearchComponent
     ]
 })
 export class InventoryPageModule { }

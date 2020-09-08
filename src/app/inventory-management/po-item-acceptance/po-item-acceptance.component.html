@@ -1,0 +1,42 @@
+<ion-content>
+    <form [formGroup]="formAcceptItem" (ngSubmit)="submit()">
+        <ion-list>
+            <ion-item color="success">
+                <ion-label>
+                    <h3>Import Items</h3>
+                </ion-label>
+                <ion-icon name="close-circle-outline" slot="end" (click)="closePop()"></ion-icon>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p>
+                        <ion-icon name="calendar-outline"></ion-icon>{{poItem.CreatedDate | date }}
+                    </p>
+                    <p>
+                        <ion-icon name="person-outline"></ion-icon>{{poItem.Username}}
+                    </p>
+                    <p>
+                        <ion-icon name="home-outline"></ion-icon>{{poItem.ToStore.NormalizeName}}
+                    </p>
+                </ion-label>
+            </ion-item>
+            <ion-item *ngFor="let item of poItem.ItemDetail; let i=index">
+                <ion-label>
+                    <h3>
+                        <ion-icon name="fast-food-outline"></ion-icon>
+                        ({{item.Quantity}}{{item.Unit.NormalizeName}}){{item.Item.NormalizeName}}
+                    </h3>
+                    <p>
+                        <ion-icon name="cash-outline"></ion-icon> {{item.Rate|number:'1.2-2'}}
+                    </p>
+                </ion-label>
+                <ion-checkbox color="success" slot="end" [value]="item.Id" (ionChange)="onCheckboxChange($event)">
+                </ion-checkbox>
+            </ion-item>
+        </ion-list>
+        <div class="ion-padding">
+            <ion-button expand="block " type="submit" class="ion-no-margin " color="success " [disabled]="this.formAcceptItem.value?.checkArray.length==0">
+                Submit</ion-button>
+        </div>
+    </form>
+</ion-content>

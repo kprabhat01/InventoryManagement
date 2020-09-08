@@ -18,15 +18,18 @@
             <ion-item *ngFor="let poItem of poItems.ItemDetail;let i = index;">
                 <ion-card>
                     <ion-card-header>
+
                         <input type="hidden" name="poItem.Id-{{i}}" [(ngModel)]="poItem.Id " required>
-                        <ion-card-subtitle>({{poItem.Unit.NormalizeName}}) {{poItem.Item.NormalizeName}}
+                        <ion-card-subtitle>
+                            <ion-icon name="notifications-circle-outline" color="danger" *ngIf="poItem.isFlagOfDifference"></ion-icon> ({{poItem.Unit.NormalizeName}}) {{poItem.Item.NormalizeName}}
+
                         </ion-card-subtitle>
                     </ion-card-header>
                     <ion-card-content>
-                        <ion-label position="stacked ">Quantity
+                        <ion-label position="stacked">Quantity
                             <ion-text color="danger ">*</ion-text>
                         </ion-label>
-                        <ion-input required type="number" [(ngModel)]="poItem.Quantity" color="success" name="poItem.Quantity-{{i}}" required></ion-input>
+                        <ion-input required type="number" [(ngModel)]="poItem.Quantity" color="success" name="poItem.Quantity-{{i}}" readonly required></ion-input>
                         <ion-label position="stacked ">Rate
                             <ion-text color="danger ">*</ion-text>
                         </ion-label>
@@ -72,7 +75,7 @@
             <ion-label>
                 <h4>
                     Status:
-                    <ion-icon name="flag-outline"></ion-icon> {{poItems.ToStore.NormalizeName}}
+                    <ion-icon name="flag-outline"></ion-icon> {{poItems.Status.NormalizeName}}
                 </h4>
             </ion-label>
         </ion-item>

@@ -16,11 +16,12 @@
                     </ion-select-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
+            <ion-item *ngIf="toInventory==null || toInventory < 1">
                 <ion-label position="stacked">To Outlet
                     <ion-text color="danger">*</ion-text>
                 </ion-label>
-                <ion-select placeholder="Select" formControlName="toOutletId">
+
+                <ion-select placeholder="Select" formControlName="toOutletId" [disabled]="true">
                     <ion-select-option *ngFor="let outlet of releventStore" [value]="outlet.Id">
                         {{outlet.NormalizeName}}
                     </ion-select-option>

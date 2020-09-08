@@ -9,10 +9,11 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { AutoCompleteModule } from 'ionic4-auto-complete';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {HttpConfigInterceptor} from '../app/api/http-config.interceptor';
+import { HttpConfigInterceptor } from '../app/api/http-config.interceptor';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {HttpConfigInterceptor} from '../app/api/http-config.interceptor';
       name: '_myQuickDB',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
-    HttpClientModule
+    HttpClientModule,
+    AutoCompleteModule
   ],
   providers: [
     StatusBar,

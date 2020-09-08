@@ -46,6 +46,10 @@
                     <ion-menu-button></ion-menu-button>
                 </ion-buttons>
                 <ion-title class="ion-text-center">QUICK BOOK</ion-title>
+                <ion-button size="small" slot="end" outline round color="success" *ngIf="userNotificationCount>0" (click)="moveToNotification()">
+                    <ion-icon name="notifications-outline"></ion-icon>
+                    {{userNotificationCount}}
+                </ion-button>
             </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">

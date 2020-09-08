@@ -5,6 +5,7 @@ export interface Items {
     ItemId: number;
     NormalizeName: string;
     Units: Normalize;
+    quantity: number;
 }
 
 export interface orderedItem {

@@ -26,7 +26,7 @@ export class InventoryService {
   }
 
   getCurrentOutletStock(outletId: number) {
-    return this.http.httpGet<currentOutletStock>('api/GetCurrentStock/' + outletId);
+    return this.http.httpGet<currentOutletStock>('api/getCurrentStock/' + outletId);
   }
   saveMaterialRecord(obj: any, isInwrds: boolean): Observable<any> {
 

@@ -27,13 +27,19 @@ export class PoFinalizerComponent implements OnInit {
   ) { }
 
   @Input() items: orderedItem[] = [];
+  @Input() notifiedItem: any[] = [];
+  @Input() toInventory: number;
+
   userOutlet: Normalize;
   releventStore: Normalize;
+  userId: number;
+
   poRequestForm = this.form.group({
     fromOutletId: ['', Validators.required],
     toOutletId: ['', Validators.required],
     poItems: ['', Validators.required],
-    createdBy: ['', Validators.required]
+    createdBy: ['', Validators.required],
+    poNotification: ['']
   });
 
   ngOnInit() {
@@ -44,17 +50,22 @@ export class PoFinalizerComponent implements OnInit {
       this.poRequestForm.patchValue({
         createdBy: p.UserName
       });
+      this.userId = p.userid;
     });
   }
+
   patchItem() {
     this.poRequestForm.patchValue({
-      poItems: this.items
+      poItems: this.items,
+      toOutletId: this.toInventory
     });
   }
+
   deleteItem(i, z) {
     this.items.splice(i, z);
     this.patchItem();
   }
+
   closePop(isDismissed: boolean) {
     this.modal.dismiss({
       dismissed: isDismissed
@@ -73,11 +84,23 @@ export class PoFinalizerComponent implements OnInit {
           quantity: item.qty
         });
       }
+      let notification = [];
+
+      for (const item of this.notifiedItem) {
+        notification.push({
+          userid: this.userId,
+          itemId: item.ItemId,
+          OutletId: this.toInventory
+        });
+      }
       this.poRequestForm.patchValue({
-        poItems: obj
+        poItems: obj,
+        poNotification: notification
       });
+
       this.poService.savePORequest(this.poRequestForm.value);
     }
     this.closePop(true);
   }
+
 }

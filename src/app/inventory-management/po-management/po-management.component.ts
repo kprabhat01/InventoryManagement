@@ -8,6 +8,7 @@ import { poComplete } from 'src/app/models/inventory';
 import { PoServiceService } from 'src/app/api/po-service.service';
 import { ToastMessageService } from 'src/app/shared/toast-message.service';
 import { AlertMessage } from 'src/app/models/globle-veriable';
+import { PoItemAcceptanceComponent } from '../po-item-acceptance/po-item-acceptance.component';
 
 
 @Component({
@@ -34,12 +35,15 @@ export class PoManagementComponent implements OnInit {
       this.username = p.UserName;
     });
   }
+
   poEdit(obj: any) {
     this.getOrderedItems(obj, false);
   }
+
   viewPO(obj: any) {
     this.getOrderedItems(obj, true);
   }
+
   async getOrderedItems(obj: any, isOnlyView: boolean) {
     const modelPage = await this.modal.create({
       component: EditPoComponent,
@@ -50,14 +54,24 @@ export class PoManagementComponent implements OnInit {
     });
     modelPage.onDidDismiss().then(data => {
       if (data.data.dismissed === true) {
-        console.log(data.data.dismissed);
         this.poEvent.emit("Refresh");
       }
     });
     modelPage.present();
   }
-  importItem(po: any) {
-    this.alert.presentAlert('Do you wanted to import the item to the store inventory? Once Imported the changes will not revert back!')
+  async importItem(po: any) {
+    const modelPage = await this.modal.create({
+      component: PoItemAcceptanceComponent,
+      componentProps: {
+        poItem: po
+      }
+    });
+    modelPage.onDidDismiss().then(() => {
+      this.poEvent.emit('Refresh');
+    });
+    modelPage.present();
+
+    /*this.alert.presentAlert('Do you wanted to import the item to the store inventory? Once Imported the changes will not revert back!')
       .then(p => {
         if (p === 'ok') {
           const obj: poComplete = {
@@ -73,7 +87,7 @@ export class PoManagementComponent implements OnInit {
             }
           });
         }
-      });
+      });*/
   }
 }
 

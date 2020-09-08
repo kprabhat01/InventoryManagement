@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/shared/local-storage.service';
 import { Normalize } from 'src/app/models/normalize';
@@ -17,6 +17,7 @@ export class OutletFilterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private localStorage: LocalStorageService
   ) { }
+  @Input() isPOSelect: boolean = false;
   @Output() selectedOutlet: EventEmitter<number> = new EventEmitter<number>();
   userOutlet: Normalize;
   OutletSearch = this.formBuilder.group({
@@ -25,7 +26,7 @@ export class OutletFilterComponent implements OnInit {
 
   ngOnInit() {
     this.localStorage.getObject<AuthenticationResponse>('AuthenticationResponse').then(p => {
-      if (p.Role === 'Super-Admin') {
+      if (p.Role === 'Super-Admin' || this.isPOSelect) {
         this.localStorage.getObject<Normalize>('Outlets').then(p => this.userOutlet = p);
       }
       else {

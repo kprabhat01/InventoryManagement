@@ -21,7 +21,8 @@ export class ItemComponent implements OnInit {
     name: ['', Validators.required],
     unitId: ['', Validators.required],
     comment: ['', Validators.required],
-    createdBy: ['', Validators.required]
+    createdBy: ['', Validators.required],
+    isVarience: ['', Validators.required]
   });
 
   ngOnInit() {
@@ -34,5 +35,8 @@ export class ItemComponent implements OnInit {
   }
   onFormSubmission() {
     this.inventory.saveItem(this.itemForm.value);
+  }
+  getSelectedInput(event){
+    console.log(event);
   }
 }

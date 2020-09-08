@@ -7,6 +7,8 @@ import { ToastMessageService } from 'src/app/shared/toast-message.service';
 import { ModalController } from '@ionic/angular';
 import { OutwardItemComponent } from '../outward-item/outward-item.component';
 import { ActivatedRoute } from '@angular/router';
+import { AutoCompleteService } from 'ionic4-auto-complete';
+import { ItemSearchComponent } from '../item-search/item-search.component';
 
 @Component({
   selector: 'app-material-outwards',
@@ -30,6 +32,7 @@ export class MaterialOutwardsComponent implements OnInit {
   selectedProduct: any[] = [];
   isInward: boolean = false;
   userName: string;
+  selectedItemName: string;
 
   outageForm = this.formBuilder.group({
     Outlet: ['', Validators.required],
@@ -89,9 +92,30 @@ export class MaterialOutwardsComponent implements OnInit {
       if (data.data.dismissed === true) {
         this.selectedProduct = [];
         this.outageForm.reset();
+        this.selectedItemName = '';
+        this.itemUnit = '';
       } else {
         this.selectedProduct = data.data.outwardItems;
       }
+    });
+    modelPage.present();
+  }
+
+
+  async getItems() {
+    const modelPage = await this.modal.create({
+      component: ItemSearchComponent,
+      componentProps: {
+        Items: this.items
+      }
+    });
+    modelPage.onDidDismiss().then(data => {
+
+      this.outageForm.patchValue({
+        Item: data.data.selectedItem ? data.data.selectedItem : null
+      });
+      this.selectedItemName = data.data.selectedItem ? data.data.selectedItem.NormalizeName : '';
+      this.itemUnit = data.data.selectedItem ? data.data.selectedItem.Units.NormalizeName : '';
     });
     modelPage.present();
   }

@@ -6,6 +6,7 @@ import { PoLogsComponent } from './po-logs/po-logs.component';
 import { OutletStockListComponent } from './outlet-stock-list/outlet-stock-list.component';
 import { OutletStockComponent } from './outlet-stock/outlet-stock.component';
 import { MaterialOutwardsComponent } from './material-outwards/material-outwards.component';
+import { PoItemAcceptanceComponent } from './po-item-acceptance/po-item-acceptance.component';
 
 const routes: Routes = [
     {
@@ -30,8 +31,11 @@ const routes: Routes = [
     }, {
         path: 'materialOutwards/:isInward',
         component: MaterialOutwardsComponent
-    }
-
+    },
+    {
+        path: 'poItemAccept',
+        component: PoItemAcceptanceComponent
+    } 
 ];
 
 @NgModule({

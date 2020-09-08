@@ -26,11 +26,8 @@
             <ion-label position="stacked">Item
                 <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-select placeholder="Select" formControlName="Item" (ionChange)="onChange($event)">
-                <ion-select-option *ngFor="let item of items" [value]="item">
-                    {{item.NormalizeName}}
-                </ion-select-option>
-            </ion-select>
+            <ion-input required type="text" [value]="selectedItemName" (click)="getItems()" readonly required>
+            </ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="stacked">Movement Type

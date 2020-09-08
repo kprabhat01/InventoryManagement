@@ -29,7 +29,6 @@ export class EditPoComponent implements OnInit {
   isAuthorized: boolean = true;
 
   ngOnInit() {
-    console.log(this.poItems);
     this.localStorage.getObject<AuthenticationResponse>('AuthenticationResponse').then(p => {
       this.username = p.UserName;
       if (p.Role !== 'Inventory-Manager' && p.Role !== 'Super-Admin') {

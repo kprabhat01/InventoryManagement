@@ -18,7 +18,8 @@ const routes: Routes = [
       path: 'dashboard',
       loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule),
       canActivate: [UserAuthGuard]
-    }, {
+    },
+    {
       path: 'changePassowrd',
       component: ChangePasscodeComponent,
       canActivate: [UserAuthGuard]
