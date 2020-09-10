@@ -1,0 +1,32 @@
+<ion-content>
+    <ion-list>
+        <ion-item color="success">
+            <ion-icon name="bar-chart-outline"></ion-icon>
+            <ion-label>Snapshot Report</ion-label>
+        </ion-item>
+
+        <app-report-filter (reportFilterObj)="showReport($event)"></app-report-filter>
+    </ion-list>
+    <ion-list *ngIf="snapShotReports">
+        <ion-item>
+            <ion-searchbar showCancelButton="never" [(ngModel)]="itemSearch"></ion-searchbar>
+        </ion-item>
+        <ion-item *ngFor="let item of snapShotReports | movementSearch:itemSearch">
+            <ion-label>
+                <h2>
+                    {{item.item}}
+                </h2>
+                <P>
+                    {{item.normalizeName}}
+                </P>
+                <h3>
+                    <span [hidden]="item.normalizeName==='Direct-Inwards' || item.normalizeName==='PORequest-Inwards'">-</span> {{item.quantity}} ({{item.unit}})
+                </h3>
+            </ion-label>
+
+            <ion-label slot="end" [color]="item.normalizeName==='Direct-Inwards' || item.normalizeName==='PORequest-Inwards'? 'success': 'danger'">
+                <h1> {{item.rate | number : '1.2-2'}}</h1>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

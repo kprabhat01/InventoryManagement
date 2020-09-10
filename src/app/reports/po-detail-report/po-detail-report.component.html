@@ -1,0 +1,20 @@
+<ion-content>
+    <ion-list>
+        <ion-item color="success">
+            <ion-label>PO Detail Report</ion-label>
+        </ion-item>
+        <app-report-filter (reportFilterObj)="showReport($event)"></app-report-filter>
+        <ion-item *ngFor="let item of poDetails">
+            <ion-label>
+                <h3>
+                    {{item.CreatedDate | date}}
+                </h3>
+                <p>{{item.ToStore.NormalizeName}}</p>
+                <p>{{item.Username}}</p>
+                <p>{{item.Status.NormalizeName}}</p>
+                <h2>{{item.TotalAmount |number : '1.2-2'}}</h2>
+            </ion-label>
+            <ion-icon *ngIf="item.ItemDetail.length>0" name="eye-outline" slot="end" (click)="showItemDetailReport(item.ItemDetail, item.TotalAmount)"></ion-icon>
+        </ion-item>
+    </ion-list>
+</ion-content>

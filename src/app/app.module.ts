@@ -14,10 +14,11 @@ import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpConfigInterceptor } from '../app/api/http-config.interceptor';
+import { MovementSearchPipe } from './pipes/search/movement-search.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MovementSearchPipe],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     IonicStorageModule.forRoot({

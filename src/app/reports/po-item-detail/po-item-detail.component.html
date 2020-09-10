@@ -1,0 +1,23 @@
+<ion-content>
+    <ion-list>
+        <ion-item color="success">
+            <ion-label>PO Item Detail </ion-label>
+            <ion-icon name="close-circle-outline" (click)="closePopUp()" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item *ngFor="let item of items">
+            <ion-label>
+                <h3>{{item.Item.NormalizeName}}</h3>
+                <p>Quantity: {{item.Quantity| number : '1.2-2'}}</p>
+                <p>Rate: {{item.Rate | number : '1.2-2'}}</p>
+            </ion-label>
+            <ion-label slot="end">
+                <h2>{{item.TotalAmount | number : '1.2-2' }}</h2>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label color="success" slot="end">
+                <h1>{{totalAmount | number : '1.2-2'}}</h1>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

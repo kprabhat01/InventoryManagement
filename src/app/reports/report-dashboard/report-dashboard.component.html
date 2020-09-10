@@ -1,18 +1,15 @@
 <ion-content>
     <ion-list>
-        <ion-item>
+        <ion-item (click)="moveToReport('/home/reports/snapshot')">
+            <ion-icon name="bar-chart-outline"></ion-icon>
             <ion-label>
                 Snapshot Report
             </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item (click)="moveToReport('/home/reports/poDetailReport')">
+            <ion-icon name="document-text-outline"></ion-icon>
             <ion-label>
                 PO Report
-            </ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>
-                Movement Report
             </ion-label>
         </ion-item>
     </ion-list>
