@@ -40,20 +40,24 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         switchMap(token => {
           this.loadspinner();
           if (token) {
-            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token.access_token) });
+            request = request.clone({ headers: request.headers.append('Authorization', 'Bearer ' + token.access_token) });
           }
 
           if (!request.headers.has('Content-Type')) {
-            request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+            request = request.clone({
+              headers:
+                request.headers.append('Content-Type', 'application/json')
+                  .append('Access-Control-Allow-Origin', '*')
+            });
           }
-
+          
           return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
               if (event instanceof HttpResponse) {
               }
               this.hidspinner();
               return event;
-            }),
+            }, finalize(() => this.hidspinner())),
             catchError((error: HttpErrorResponse) => {
               this.toastMessage.showSweetMesage(error.status + '=>' + error.error?.Message, 'danger');
               this.hidspinner();

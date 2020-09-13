@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  debug: true,
   production: false,
-  apiEndPoint: 'https://localhost:44344/',
+  apiEndPoint: 'http://103.127.146.41/quickbookapi/',
   version: '1.0.0.0'
 };
 
